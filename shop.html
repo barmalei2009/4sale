@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Melnikov Iris Garden — Browse and order award-winning iris rhizomes. Tall Bearded, Border Bearded, and more.">
+  <title>Melnikov Iris Garden — Iris Catalog</title>
+
+  <!-- Fonts (self-hosted fallback if offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     SITE HEADER
+═══════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="#" class="site-logo" aria-label="Melnikov Iris Garden home">
+      <!-- Iris SVG logo mark -->
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M32 6 C32 6 18 20 18 34 C18 43 24 50 32 52 C40 50 46 43 46 34 C46 20 32 6 32 6Z"
+              fill="rgba(255,255,255,0.85)"/>
+        <path d="M32 52 C32 52 12 42 8 28 C5 18 12 8 20 12 C26 15 30 24 32 36"
+              stroke="rgba(255,255,255,0.7)" stroke-width="2.5" fill="none"/>
+        <path d="M32 52 C32 52 52 42 56 28 C59 18 52 8 44 12 C38 15 34 24 32 36"
+              stroke="rgba(255,255,255,0.7)" stroke-width="2.5" fill="none"/>
+        <line x1="32" y1="52" x2="32" y2="62" stroke="rgba(255,255,255,0.55)" stroke-width="2.5"/>
+      </svg>
+      Melnikov Iris Garden
+    </a>
+
+    <span class="header-tagline">Est. · Fine Iris Rhizomes</span>
+
+    <button class="header-cart-btn" id="cart-btn" aria-label="Open shopping cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      Cart
+      <span class="cart-count" id="cart-count" style="display:none">0</span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HERO BANNER
+═══════════════════════════════════════ -->
+<section class="hero" aria-label="Welcome banner">
+  <h1 class="hero-title">Rare &amp; Award-Winning Irises<br>Direct from the Garden</h1>
+  <p class="hero-subtitle">
+    Hand-selected rhizomes shipped at the right time for your growing zone.
+    Dykes Medal winners, fragrant varieties, and collector's picks.
+  </p>
+  <button class="hero-cta" id="hero-cta" aria-label="Browse catalog">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    Browse the Catalog
+  </button>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MAIN SHOP LAYOUT
+═══════════════════════════════════════ -->
+<main id="catalog-section">
+  <div class="shop-layout">
+
+    <!-- ─── SIDEBAR FILTERS ─── -->
+    <aside class="sidebar" aria-label="Filter products">
+
+      <div class="sidebar-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        Filter Varieties
+      </div>
+
+      <!-- Search -->
+      <div class="filter-group">
+        <label class="filter-label" for="filter-search">Search</label>
+        <input type="search" id="filter-search" class="filter-search"
+               placeholder="Name, color, description…" autocomplete="off">
+      </div>
+
+      <!-- Color Family -->
+      <div class="filter-group">
+        <span class="filter-label" id="color-label">Color Family</span>
+        <div class="color-swatches" role="group" aria-labelledby="color-label">
+          <button class="swatch-btn active" data-color="all"
+                  title="All colors" aria-label="All colors"></button>
+          <button class="swatch-btn" data-color="purple"
+                  title="Purple" aria-label="Purple"></button>
+          <button class="swatch-btn" data-color="blue"
+                  title="Blue" aria-label="Blue"></button>
+          <button class="swatch-btn" data-color="white"
+                  title="White" aria-label="White"></button>
+          <button class="swatch-btn" data-color="pink"
+                  title="Pink" aria-label="Pink"></button>
+          <button class="swatch-btn" data-color="yellow"
+                  title="Yellow / Apricot" aria-label="Yellow and Apricot"></button>
+          <button class="swatch-btn" data-color="bicolor"
+                  title="Bicolor" aria-label="Bicolor"></button>
+        </div>
+      </div>
+
+      <!-- Type -->
+      <div class="filter-group">
+        <span class="filter-label" id="type-label">Iris Type</span>
+        <div class="chip-list" role="group" aria-labelledby="type-label">
+          <button class="chip-btn type-chip active" data-type="All">All</button>
+          <button class="chip-btn type-chip" data-type="Tall Bearded">Tall Bearded</button>
+          <button class="chip-btn type-chip" data-type="Border Bearded">Border Bearded</button>
+        </div>
+      </div>
+
+      <!-- Bloom Time -->
+      <div class="filter-group">
+        <span class="filter-label" id="bloom-label">Bloom Time</span>
+        <div class="chip-list" role="group" aria-labelledby="bloom-label">
+          <button class="chip-btn bloom-chip active" data-bloom="All">All</button>
+          <button class="chip-btn bloom-chip" data-bloom="Early">Early</button>
+          <button class="chip-btn bloom-chip" data-bloom="Early-Mid">Early-Mid</button>
+          <button class="chip-btn bloom-chip" data-bloom="Mid">Mid</button>
+          <button class="chip-btn bloom-chip" data-bloom="Midseason">Midseason</button>
+          <button class="chip-btn bloom-chip" data-bloom="Mid-Late">Mid-Late</button>
+          <button class="chip-btn bloom-chip" data-bloom="Late">Late</button>
+        </div>
+      </div>
+
+      <!-- Price Range -->
+      <div class="filter-group">
+        <label class="filter-label" for="price-range">Max Price</label>
+        <div class="price-range-row">
+          <span style="font-size:0.8rem;color:var(--clr-text-muted)">$0</span>
+          <input type="range" id="price-range" min="0" max="20" value="20" step="0.5">
+          <span class="price-range-val" id="price-val">$20.00</span>
+        </div>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="filter-group">
+        <span class="filter-label">Special Filters</span>
+        <div class="check-list">
+          <label class="check-item">
+            <input type="checkbox" id="chk-featured">
+            <span>Featured picks only</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="chk-fragrant">
+            <span>Fragrant varieties</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="chk-instock">
+            <span>In stock only</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="chk-award">
+            <span>Award winners only</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-reset" id="btn-reset" type="button">
+        ↺ Clear All Filters
+      </button>
+
+    </aside>
+
+    <!-- ─── CATALOG PANEL ─── -->
+    <div class="catalog-panel">
+
+      <!-- Featured strip -->
+      <div class="featured-strip" id="featured-strip" aria-label="Featured irises">
+        <div class="featured-strip-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--clr-accent)"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Staff Picks
+        </div>
+        <div class="featured-chips" id="featured-chips"></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <p class="result-count" id="result-count" aria-live="polite">Loading…</p>
+        <div class="toolbar-right">
+
+          <label for="sort-select" class="sr-only">Sort by</label>
+          <select id="sort-select" class="sort-select" aria-label="Sort products">
+            <option value="name-asc">Name A–Z</option>
+            <option value="name-desc">Name Z–A</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="year-desc">Newest Introductions</option>
+            <option value="year-asc">Classic Varieties</option>
+          </select>
+
+          <div class="view-toggles" role="group" aria-label="View style">
+            <button class="view-btn active" id="view-grid" title="Grid view" aria-pressed="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </button>
+            <button class="view-btn" id="view-list" title="List view" aria-pressed="false">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6"/>
+                <line x1="8" y1="12" x2="21" y2="12"/>
+                <line x1="8" y1="18" x2="21" y2="18"/>
+                <circle cx="3.5" cy="6"  r="1.5" fill="currentColor" stroke="none"/>
+                <circle cx="3.5" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+                <circle cx="3.5" cy="18" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Active filter pills -->
+      <div class="active-filters" id="active-filters" aria-label="Active filters" role="list"></div>
+
+      <!-- Product grid -->
+      <div class="product-grid" id="product-grid" role="list" aria-label="Iris catalog"></div>
+
+    </div><!-- /catalog-panel -->
+  </div><!-- /shop-layout -->
+</main>
+
+<!-- ═══════════════════════════════════════
+     CART DRAWER
+═══════════════════════════════════════ -->
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+<aside class="cart-drawer" id="cart-drawer" role="dialog"
+       aria-modal="true" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h2>🌸 Your Cart</h2>
+    <button class="cart-close" id="cart-close" aria-label="Close cart">✕</button>
+  </div>
+
+  <div class="cart-items" id="cart-items"></div>
+
+  <div class="cart-footer">
+    <div class="cart-summary">
+      <span id="cart-item-count">0 items</span>
+      <span>Subtotal</span>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <!-- Subtotal hidden (same as total; add tax/shipping logic in shop.js if needed) -->
+    <span id="cart-subtotal" style="display:none">$0.00</span>
+
+    <!-- ── PayPal Smart Buttons ── -->
+    <div id="paypal-button-container" style="margin-top:0.75rem;min-height:50px"></div>
+
+    <!-- Shown when cart is empty instead of PayPal buttons -->
+    <p id="paypal-empty-msg" style="display:none;text-align:center;font-size:0.82rem;
+       color:var(--clr-text-muted);margin-top:0.75rem;padding:0.5rem 0">
+      Add items to your cart to enable checkout.
+    </p>
+
+    <!-- Success state (replaces items list after payment) -->
+    <div id="cart-success" style="display:none;text-align:center;padding:1.25rem 0.5rem"></div>
+
+    <p id="cart-shipping-note" style="font-size:0.75rem;color:var(--clr-text-muted);text-align:center;margin-top:0.75rem">
+      Shipping address collected by PayPal at checkout · Rhizomes ship bare-root
+    </p>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════
+     QUICK-VIEW MODAL
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog"
+     aria-modal="true" aria-label="Product details">
+  <div class="modal" id="modal">
+    <div id="modal-content"></div>
+  </div>
+  <!-- Standalone close is injected by JS; this is a fallback -->
+  <button class="modal-close" id="modal-close"
+          style="position:fixed;top:1rem;right:1rem;z-index:810"
+          aria-label="Close product details">✕</button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TOAST NOTIFICATIONS
+═══════════════════════════════════════ -->
+<div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+<!-- ═══════════════════════════════════════
+     SITE FOOTER
+═══════════════════════════════════════ -->
+<footer class="site-footer">
+  <p>
+    <strong style="color:#fff">Melnikov Iris Garden</strong> &nbsp;·&nbsp;
+    Fairview, CA &nbsp;·&nbsp;
+    <a href="mailto:sergey@example.com">sergey@example.com</a>
+  </p>
+  <p style="margin-top:0.4rem">
+    Rhizomes ship bare-root, July – September · All sales final on living plant material
+  </p>
+  <p style="margin-top:0.75rem;font-size:0.75rem;opacity:0.5">
+    Built with the
+    <a href="https://github.com/smelnikov/iris-shop" style="opacity:1">Iris Shop Template</a>
+    for GitHub Pages
+  </p>
+</footer>
+
+<!-- Screen-reader utility class -->
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PAYPAL SETUP — replace YOUR_CLIENT_ID with your real ID    ║
+  ║  1. Go to https://developer.paypal.com/dashboard/           ║
+  ║  2. Create an App → copy the Client ID                      ║
+  ║  3. Replace YOUR_CLIENT_ID below (two places: here & js)    ║
+  ║  Use your SANDBOX ID for testing, LIVE ID for production.   ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<script
+  id="paypal-sdk"
+  src="https://www.paypal.com/sdk/js?client-id=AZpCwVyCIQddXF5mtaZyJ6VD2PCwi3LN-Xbeb0uPITMJqhTdpQ05hG_j7MkkPdP-VVNBh8Mxfy6ea3mu&currency=USD&intent=capture&components=buttons"
+  data-sdk-integration-source="static-site">
+</script>
+
+<script src="shop.js"></script>
+</body>
+</html>
